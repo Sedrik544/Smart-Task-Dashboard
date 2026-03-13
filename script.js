@@ -65,14 +65,14 @@ function updateStats() {
     if (el) el.innerText = tasks.length;
 }
 
-const savedName = localStorage.getItem('userName') || 'Davide';
-userNameDisplay.innerText = `Ahoj, ${savedName}!`;
+const savedName = localStorage.getItem('userName') || 'uživateli';
+userNameDisplay.innerText = `Vítej, ${savedName}!`;
 
 document.getElementById('save-settings-btn').addEventListener('click', () => {
     const newName = document.getElementById('name-change-input').value.trim();
     if (newName) {
         localStorage.setItem('userName', newName);
-        userNameDisplay.innerText = `Ahoj, ${newName}!`;
+        userNameDisplay.innerText = `Vítej, ${newName}!`;
         alert('Uloženo!');
     }
 });
