@@ -1,41 +1,206 @@
+/* --- 1. ZÁKLADNÍ NASTAVENÍ A PROMĚNNÉ --- */
 :root {
     --primary: #6366f1;
+    --primary-hover: #4f46e5;
     --bg: #f3f4f6;
     --white: #ffffff;
-    --text: #1f2937;
+    --text-main: #1f2937;
+    --text-muted: #6b7280;
     --danger: #ef4444;
+    --sidebar-dark: #111827;
 }
 
-* { box-sizing: border-box; }
-body { font-family: 'Poppins', sans-serif; background: var(--bg); margin: 0; color: var(--text); }
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
 
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: var(--bg);
+    color: var(--text-main);
+    line-height: 1.6;
+}
+
+/* --- 2. LAYOUT DASHBOARDU --- */
 .dashboard {
     display: grid;
     grid-template-columns: 250px 1fr;
     min-height: 100vh;
 }
 
-.sidebar { background: #111827; color: white; padding: 30px; }
-.sidebar__logo span { color: var(--primary); }
-.sidebar__nav { margin-top: 50px; display: flex; flex-direction: column; gap: 20px; }
-.sidebar__link { color: #9ca3af; text-decoration: none; transition: 0.3s; padding: 10px; border-radius: 8px; }
-.sidebar__link.active, .sidebar__link:hover { color: white; background: rgba(255,255,255,0.1); }
-
-.content { padding: 50px; }
-.task-manager, .stats-card, .settings-card {
-    background: var(--white);
+/* --- 3. SIDEBAR (BOČNÍ PANEL) --- */
+.sidebar {
+    background-color: var(--sidebar-dark);
+    color: white;
     padding: 30px;
-    border-radius: 15px;
-    box-shadow: 0 10px 25px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
 }
 
-.task-manager__input-group { display: flex; gap: 10px; margin-bottom: 30px; }
-input[type="text"] { flex: 1; padding: 12px; border: 2px solid #e5e7eb; border-radius: 8px; outline: none; }
-.btn-add { background: var(--primary); color: white; border: none; padding: 12px 25px; border-radius: 8px; cursor: pointer; font-weight: 600; }
+.sidebar__logo {
+    font-size: 1.5rem;
+    font-weight: 700;
+}
 
-.task-list { list-style: none; padding: 0; }
-.task-item { display: flex; justify-content: space-between; align-items: center; padding: 15px; border-bottom: 1px solid #f3f4f6; }
-.btn-delete { color: var(--danger); cursor: pointer; border: none; background: none; font-weight: bold; }
+.sidebar__logo span {
+    color: var(--primary);
+}
 
-.stat-number { display: block; font-size: 3rem; font-weight: 700; color: var(--primary); }
-.settings-form { display: flex; flex-direction: column; gap: 10px; max-width: 300px; margin-top: 20px; }
+.sidebar__nav {
+    margin-top: 50px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    flex-grow: 1;
+}
+
+.sidebar__link {
+    color: #9ca3af;
+    text-decoration: none;
+    padding: 12px 15px;
+    border-radius: 8px;
+    transition: 0.3s ease;
+}
+
+.sidebar__link:hover, 
+.sidebar__link.active {
+    color: white;
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.sidebar__footer {
+    font-size: 0.8rem;
+    color: #4b5563;
+}
+
+/* --- 4. HLAVNÍ OBSAH --- */
+.content {
+    padding: 50px;
+}
+
+.content__header h1 {
+    font-size: 2rem;
+    margin-bottom: 5px;
+}
+
+.content__date {
+    color: var(--text-muted);
+    margin-bottom: 30px;
+}
+
+/* Karty (Společný styl pro sekce) */
+.task-manager, 
+.stats-card, 
+.settings-card {
+    background-color: var(--white);
+    padding: 30px;
+    border-radius: 15px;
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.05);
+    max-width: 800px;
+}
+
+/* --- 5. SEKCE ÚKOLY --- */
+.task-manager__input-group {
+    display: flex;
+    gap: 10px;
+    margin-bottom: 30px;
+}
+
+input[type="text"] {
+    flex: 1;
+    padding: 12px 15px;
+    border: 2px solid #e5e7eb;
+    border-radius: 8px;
+    outline: none;
+    font-family: inherit;
+}
+
+input[type="text"]:focus {
+    border-color: var(--primary);
+}
+
+.btn-add {
+    background-color: var(--primary);
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    transition: background 0.3s;
+}
+
+.btn-add:hover {
+    background-color: var(--primary-hover);
+}
+
+.task-list {
+    list-style: none;
+}
+
+.task-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px;
+    border-bottom: 1px solid #f3f4f6;
+    animation: fadeIn 0.3s ease;
+}
+
+.btn-delete {
+    color: var(--danger);
+    background: none;
+    border: none;
+    font-weight: 700;
+    cursor: pointer;
+    padding: 5px 10px;
+}
+
+/* --- 6. SEKCE STATISTIKY --- */
+.stats-grid {
+    margin-top: 20px;
+}
+
+.stat-number {
+    display: block;
+    font-size: 3.5rem;
+    font-weight: 700;
+    color: var(--primary);
+}
+
+.stat-label {
+    color: var(--text-muted);
+    font-size: 1.1rem;
+}
+
+/* --- 7. SEKCE NASTAVENÍ --- */
+.settings-form {
+    margin-top: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    max-width: 350px;
+}
+
+.settings-form label {
+    font-weight: 600;
+    color: var(--text-muted);
+}
+
+/* --- 8. ANIMACE A OSTATNÍ --- */
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(5px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* Pro schovávání sekcí přes JS */
+.content-section {
+    display: none; /* Výchozí stav: skryto */
+}
+
+/* První sekce (úkoly) bude vidět hned */
+#section-tasks {
+    display: block;
+}
