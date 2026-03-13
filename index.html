@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="cs">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Task Dashboard | David Moravec</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+
+    <div class="dashboard">
+        <aside class="sidebar">
+            <h2 class="sidebar__logo">Dev<span>Dash</span></h2>
+            <nav class="sidebar__nav">
+                <a href="#" class="sidebar__link active">Moje Úkoly</a>
+                <a href="#" class="sidebar__link">Statistiky</a>
+                <a href="#" class="sidebar__link">Nastavení</a>
+            </nav>
+            <div class="sidebar__footer">
+                <p>Verze 1.0</p>
+            </div>
+        </aside>
+
+        <main class="content">
+            <header class="content__header">
+                <div class="header__info">
+                    <h1>Ahoj, uživateli!</h1>
+                    <p id="date-display" class="content__date"></p>
+                </div>
+            </header>
+
+            <section id="section-tasks" class="content-section">
+                <div class="task-manager">
+                    <div class="task-manager__header">
+                        <h2>Dnešní priority</h2>
+                    </div>
+                    <div class="task-manager__input-group">
+                        <input type="text" id="task-input" placeholder="Napiš nový úkol...">
+                        <button id="add-task-btn" class="btn-add">Přidat úkol</button>
+                    </div>
+                    <ul id="task-list" class="task-list"></ul>
+                </div>
+            </section>
+
+            <section id="section-stats" class="content-section" style="display: none;">
+                <div class="stats-card">
+                    <h2>Statistiky</h2>
+                    <div class="stats-grid">
+                        <span class="stat-number" id="total-tasks-count">0</span>
+                        <span class="stat-label">Aktuálních úkolů</span>
+                    </div>
+                </div>
+            </section>
+
+            <section id="section-settings" class="content-section" style="display: none;">
+                <div class="settings-card">
+                    <h2>Nastavení</h2>
+                    <div class="settings-form">
+                        <label>Změnit jméno:</label>
+                        <input type="text" id="name-change-input" placeholder="Tvoje nové jméno">
+                        <button id="save-settings-btn" class="btn-add">Uložit</button>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
